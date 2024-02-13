@@ -20,4 +20,17 @@ contract AuditTest is BaseTest {
 
         assertTrue(amountAfter == 30 ether);
     }
+
+    function test_claimAirdropWithoutSoulmate() public{
+        uint256 amountBefore = loveToken.balanceOf(soulmate1);
+        // set timestamp in foundry - default is 0
+        vm.warp(1707845718);
+        vm.startPrank(soulmate1);
+        airdropContract.claim();
+        vm.stopPrank();
+
+        uint256 amountAfter = loveToken.balanceOf(soulmate1);
+
+        assertTrue(amountAfter > amountBefore);
+    }
 }
