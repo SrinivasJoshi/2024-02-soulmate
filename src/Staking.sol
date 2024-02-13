@@ -67,6 +67,7 @@ contract Staking {
 
     /// @notice Claim rewards for staking.
     /// @notice Users can claim 1 token per staking token per week.
+    // @audit people who don't have a soulmate can claim rewards
     function claimRewards() public {
         uint256 soulmateId = soulmateContract.ownerToId(msg.sender);
         // first claim

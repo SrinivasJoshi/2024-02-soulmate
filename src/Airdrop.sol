@@ -48,6 +48,7 @@ contract Airdrop {
     // Financiary dependency is important in a couple.
 
     /// @notice Claim tokens. Every person who have a Soulmate NFT token can claim 1 LoveToken per day.
+    // @audit people who don't have a soulmate can claim token
     function claim() public {
         // No LoveToken for people who don't love their soulmates anymore.
         if (soulmateContract.isDivorced()) revert Airdrop__CoupleIsDivorced();

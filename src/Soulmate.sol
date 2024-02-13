@@ -72,8 +72,8 @@ contract Soulmate is ERC721 {
             ownerToId[msg.sender] = nextID;
             emit SoulmateIsWaiting(msg.sender);
         } else if (soulmate2 == address(0)) {
-            idToOwners[nextID][1] = msg.sender;
             // Once 2 soulmates are reunited, the token is minted
+            idToOwners[nextID][1] = msg.sender;
             ownerToId[msg.sender] = nextID;
             soulmateOf[msg.sender] = soulmate1;
             soulmateOf[soulmate1] = msg.sender;
@@ -121,6 +121,7 @@ contract Soulmate is ERC721 {
     }
 
     /// @notice Cancel possibily for 2 lovers to collect LoveToken from the airdrop.
+    // @audit 
     function getDivorced() public {
         address soulmate2 = soulmateOf[msg.sender];
         divorced[msg.sender] = true;
